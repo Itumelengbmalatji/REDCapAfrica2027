@@ -1,7 +1,7 @@
 :root {
  font-family: "Krona One", sans-serif;
   color: #111;
-  background: #fafafa;
+  background: #ffffff;
   line-height: 1.6;
 }
 
@@ -32,6 +32,10 @@ button {
 .container {
   width: min(1120px, calc(100% - 2rem));
   margin: 0 auto;
+}
+
+.container-wide {
+  width: min(1400px, calc(100% - 2rem));
 }
 
 .site-header {
@@ -236,6 +240,10 @@ button {
   background: rgba(255, 255, 255, 0.03);
 }
 
+.section-committee {
+  background: #d3cece;
+}
+
 .section-grid {
   display: grid;
   grid-template-columns: 1.1fr minmax(240px, 0.9fr);
@@ -252,13 +260,61 @@ button {
 .section-grid p,
 .section p {
   color: #000000;
-  font-size: 1rem;
+  font-size: 1.0rem;
+}
+
+.page-intro {
+  text-align: center;
+  max-width: 70ch;
+  margin: 0 auto 1rem;
+}
+
+.page-intro p {
+  text-align: justify;
+}
+
+.section-hero-intro {
+  position: relative;
+  padding: 6rem 0;
+  background-image: url('../Assets/bread-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.section-hero-intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 7, 15, 0.65);
+  pointer-events: none;
+}
+
+.section-hero-intro .container {
+  position: relative;
+  z-index: 1;
+}
+
+.section-hero-intro .page-intro h2,
+.section-hero-intro .page-intro p {
+  color: #ffffff;
+}
+
+.about-intro {
+  text-align: center;
+  max-width: 1000ch;
+  margin: 0 auto 1rem;
+  
+}
+
+.about-intro p {
+  text-align: justify;
 }
 
 .feature-list {
   padding: 2.1rem;
   background: rgba(5, 5, 5, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+ border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .feature-list h3 {
@@ -278,17 +334,107 @@ button {
   color: #e2e8f0;
 }
 
+
+
+/*for about page ONLY*/
+.page-about .feature-list {
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.9);
+  background-image:
+  url('../Assets/REDCapAfricalogo.png');
+  /*border: 15px solid rgba(255, 255, 255, 0.08);*/
+  /*comment out the 3 lines below to bring back old design*/
+  background-size: contain;   
+  background-repeat: no-repeat; 
+  background-position: center;  
+  max-width: 900px;      
+  margin: 2rem auto 0;   
+  text-align: justify; 
+
+}
+
+
+.page-about .feature-list h3 {
+  margin-top: 0;
+  color: #ffffff;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.page-about .feature-list ul {
+  /*list-style: disc;*/
+  list-style: none;
+  padding: 1.5rem;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.page-about .feature-list li {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.page-about .feature-list .mission-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
+  /* icons are black PNGs; invert so they read white against the dark card */
+  filter: invert(1) brightness(2);
+}
+/*for about page ONLY*/
+
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
 }
 
-.card {
-  padding: 2rem;
+/* Stack the year cards one above the other, each on its own line */
+.page-past-years .cards-grid {
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
 
-  background: rgba(128 0 0 / 87%);
-  
+.card {
+  position: relative;
+  isolation: isolate;
+  padding: 2.5rem;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #b60000;
+  background-size: cover;
+  background-position: center;
+}
+
+.page-past-years .card {
+  padding: 5rem 4.5rem;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Dark red gradient overlay so the background photo shows through
+   while keeping the heading and body text readable */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(160deg, rgba(128, 0, 0, 0.60), rgba(10, 0, 0, 0.60));
+}
+
+.card-2025 {
+  background-image: url('../Assets/2025.jpg');
+}
+
+.card-2024 {
+  background-image: url('../Assets/2024.jpg');
 }
 
 .card h3 {
@@ -296,39 +442,125 @@ button {
   color: #fafafa;
 }
 
+.page-past-years .card h3 {
+  font-size: 2rem;
+  text-align: center;
+}
+
 .card p {
   margin: 0.9rem 0 0;
   color: #f0f0f0;
+  font-size: 1.2rem;
+}
+
+.page-past-years .card p {
+  text-align: justify;
 }
 
 .stats-section {
   padding: 4rem 0;
 }
 
+/* White backdrop for the stats section */
+.section-stats {
+  background: #ffffff;
+}
+
+.section-stats h2.stats-heading {
+  text-align: center;
+  color: #000000;
+  margin-bottom: 2.5rem;
+  /*text-shadow: 0 0 3px rgba(255, 20, 60, 0.55);*/
+}
+
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
 }
 
+/* Red neon-glass effect, tuned for a white backdrop:
+   a light glass fill + red border/glow (rather than the heavier translucent
+   red fill that was designed to pop against black), with dark text so it
+   stays readable on white instead of washing out. */
 .stat-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 2rem;
-  border-radius: 24px;
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  min-height: 220px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(182, 0, 0, 0.35);
+  box-shadow:
+    0 0 14px rgba(182, 0, 0, 0.25),
+    0 0 30px rgba(182, 0, 0, 0.12),
+    0 6px 20px rgba(0, 0, 0, 0.08);
   text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Icon watermark, sat behind the number and label */
+.stat-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100px 100px;
+  opacity: 0.30;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.stat-card-symposia::before {
+  background-image: url('../Assets/event-icon.png');
+}
+
+.stat-card-attendees::before {
+  background-image: url('../Assets/group-icon.png');
+}
+
+.stat-card-countries::before {
+  background-image: url('../Assets/globe-line-icon.png');
+}
+
+.stat-card-institutions::before {
+  background-image: url('../Assets/library-icon.png');
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 20px rgba(182, 0, 0, 0.4),
+    0 0 40px rgba(182, 0, 0, 0.2),
+    0 10px 26px rgba(0, 0, 0, 0.12);
 }
 
 .stat-card span {
-  display: block;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 2.6rem;
   font-weight: 800;
-  color: #7dd3fc;
+  color: #b60000;
+  text-shadow: 0 0 10px rgba(182, 0, 0, 0.3);
 }
 
 .stat-card p {
-  margin: 1rem 0 0;
-  color: #cbd5e1;
+  position: relative;
+  z-index: 1;
+  margin: 1.9rem 0 0;
+  margin-top: auto;
+  color: #000000;
+  font-weight: 600;
 }
 
 .video-grid {
@@ -487,5 +719,324 @@ button {
 
   .hero {
     padding-top: 3rem;
+  }
+
+  .page-past-years .card {
+    padding: 2.5rem 1.75rem;
+    min-height: unset;
+  }
+}
+.committee-heading-block {
+  text-align: center;
+}
+
+.committee-members-heading {
+  font-size: 2rem; 
+}
+
+
+
+/*center committee header
+.committee-header {
+  text-align: center;
+}*/
+
+/*center committee intro
+.committee-intro {
+  text-align: center;
+  max-width: 80ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+*/
+
+
+/* Committee Styles */
+/* Committee Styles - Pyramid Hierarchy */
+.committee-pyramid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.committee-tier {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Tier 1: Chair - one card, largest, on its own at the top */
+.tier-chair .committee-card {
+  width: 260px;
+}
+
+/* Tier 2: Co-Chairs - three cards, slightly smaller */
+.tier-cochairs .committee-card {
+  width: 260px;
+}
+
+/* Tier 3: Key Members - widest row, smallest cards */
+.tier-members .committee-card {
+  width: 260px;
+}
+
+/* Co-chairs and key-member rows share the same 4-column grid so they line up.
+   Each co-chair card is placed spanning two grid columns and centered within
+   that span, so it sits in the gap between two cards in the row below. */
+.tier-cochairs,
+.tier-members {
+  display: grid;
+  grid-template-columns: repeat(4, 260px);
+  justify-content: center;
+  gap: 2rem;
+}
+
+.tier-cochairs .committee-card:nth-child(1) {
+  grid-column: 1 / 3;
+  justify-self: center;
+}
+
+.tier-cochairs .committee-card:nth-child(2) {
+  grid-column: 3 / 5;
+  justify-self: center;
+}
+
+.committee-card {
+  /* Background image for committee cards only, with a red tint overlay*/
+  /*change to non copy right picture*/
+  position: relative;
+  background-image:
+    linear-gradient(rgb(255, 0, 0, 0.50), rgb(255, 0, 0, 0.50)),
+    url('../Assets/JHBv1.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  border: 3px solid #0c0000 !important;
+  /*box-shadow: 0 15px 30px rgba(247, 0, 0, 0.721) !important;*/
+  /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);*/
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+ /* animation:fadeUp .7s ease;*/
+}
+
+
+.committee-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Profile Picture */
+.committee-profile-pic {
+  width: 180px;
+  height: 180px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f0f0f0;
+  border: 3px solid var(--primary-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.committee-profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Committee Info */
+.committee-info {
+  flex: 1;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.committee-info h4 {
+  margin: 0.5rem 0 0.25rem 0;
+  font-size: 1.2rem;
+  color: #000000;
+  font-weight: 700;
+}
+
+.committee-role {
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+  color: var(--primary-red);
+  font-size: 0.9rem;
+}
+
+/* Organization wrapper - flex container for logo and text */
+.committee-org-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.committee-org {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.8rem;
+   font-weight: 600;
+}
+
+/* Organization Logo - pinned to the bottom-right corner of the card  */
+.committee-logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #bcb9b9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.committee-logo-corner {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  width: 65px;
+  height: 65px;
+}
+
+.committee-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+/* Page-specific styles for About page only */
+.page-about .committee-role {
+  color: #ffffff !important;
+}
+
+.page-about .committee-info h4 {
+  color: #ffffff !important;
+}
+
+.page-about .section h2 {
+  color: #000000 !important;
+}
+
+.page-about .feature-list h3 {
+  color: #ffffff !important;
+}
+
+.page-about .feature-list li {
+  color: #ffffff !important;
+}
+
+/* Keep the gold color for footer on About page */
+.page-about .footer-col h3 {
+  color: #DAA520 !important;
+}
+
+/* Uniform card height + fixed-height name zone so the org name and logo
+   always sit at the same vertical position across every committee card,
+   regardless of how long a person's name or organization name is. */
+.page-about .committee-card {
+  min-height: 400px;
+  padding-top: 1.9rem;
+}
+
+/* White banner bar at the bottom of the card, sitting behind the
+   institution name and logo so they're no longer floating directly on
+   top of the red-tinted photo background. */
+.page-about .committee-card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 84px;
+  background: #ffffff;
+  border-radius: 0 0 17px 17px;
+  z-index: 0;
+}
+
+/* Pin the org name to start right where the logo ends, matching the
+   logo's bottom offset and height so the institution name sits
+   vertically centered against the logo circle. */
+.page-about .committee-org-wrapper {
+  position: absolute;
+  left: 91px;
+  right: 1rem;
+  bottom: 14px;
+  height: 65px;
+  margin-top: 0;
+  padding-top: 0;
+  justify-content: flex-start;
+  z-index: 1;
+}
+
+.page-about .committee-logo-corner {
+  z-index: 1;
+}
+
+.page-about .committee-info h4 {
+  min-height: 2.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.page-about .committee-org {
+  color: #b60000;
+  font-size: 0.85rem;
+  line-height: 1.3;
+  text-align: left;
+  font-weight: 700;
+}
+
+
+/* Responsive Design */
+@media (max-width: 720px) {
+  .committee-tier {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tier-cochairs,
+  .tier-members {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tier-cochairs .committee-card:nth-child(1),
+  .tier-cochairs .committee-card:nth-child(2) {
+    grid-column: auto;
+  }
+
+  .tier-chair .committee-card,
+  .tier-cochairs .committee-card,
+  .tier-members .committee-card {
+    width: min(320px, 100%);
+  }
+
+  .committee-card {
+    text-align: center;
+  }
+
+  .committee-org-wrapper {
+    flex-wrap: wrap;
   }
 }
