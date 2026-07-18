@@ -5,11 +5,340 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Program | REDCap Africa Symposium</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ---------- Program page ---------- */
+    .program-hero {
+      position: relative;
+      padding: 2.5rem 0;
+      background:
+        linear-gradient(135deg, rgba(128, 0, 22, 0.85) 0%, rgba(176, 0, 32, 0.8) 100%),
+        url('https://www.redcap.africa/pics/bread-bg.jpg') center/cover no-repeat;
+      color: #fff;
+    }
+
+    .program-hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .program-hero h1 {
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      margin: 0 0 0.4rem;
+      line-height: 1.2;
+      color: #fff;
+    }
+
+    .program-hero .lead {
+      margin: 0;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* At-a-glance day strip */
+    .glance {
+      padding: 3rem 0 1rem;
+    }
+
+    .glance h2 {
+      font-size: 1.6rem;
+      margin: 0 0 1.25rem;
+      color: #111;
+    }
+
+    .day-strip {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .day-cell {
+      padding: 1.1rem 1rem;
+      background: #fff;
+      border: 1px solid #eaeaea;
+      border-left: 4px solid #B00020;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    }
+
+    .day-cell .date {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #B00020;
+      font-weight: 700;
+    }
+
+    .day-cell .day-name {
+      display: block;
+      font-size: 1.05rem;
+      color: #111;
+      margin: 0.35rem 0 0.6rem;
+      font-weight: 700;
+    }
+
+    .day-cell ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.3rem;
+    }
+
+    .day-cell li {
+      font-size: 0.78rem;
+      color: #555;
+      line-height: 1.35;
+    }
+
+    .day-cell li::before {
+      content: '\2022  ';
+      color: #DAA520;
+      font-weight: 700;
+    }
+
+    /* Filter tabs */
+    .track-filter {
+      padding: 3rem 0 1rem;
+    }
+
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e2e2e2;
+      margin-bottom: 2rem;
+    }
+
+    .filter-tab {
+      padding: 0.7rem 1.2rem;
+      border: 1px solid #d1d1d1;
+      background: #fff;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #444;
+      transition: all 0.2s ease;
+    }
+
+    .filter-tab:hover {
+      border-color: #B00020;
+      color: #B00020;
+    }
+
+    .filter-tab.active {
+      background: #B00020;
+      border-color: #B00020;
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(182, 0, 0, 0.25);
+    }
+
+    /* Track cards */
+    .track-list {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .track-card {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      background: #fff;
+      border: 1px solid #eaeaea;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .track-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .track-card.hidden {
+      display: none;
+    }
+
+    .track-card-side {
+      background: linear-gradient(160deg, #800016 0%, #B00020 100%);
+      color: #fff;
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .track-card-side::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 60px;
+      background: rgba(218, 165, 32, 0.18);
+      border-bottom-left-radius: 60px;
+    }
+
+    .track-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #DAA520;
+      font-weight: 700;
+    }
+
+    .track-date {
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0.3rem 0 0;
+    }
+
+    .track-time {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-top: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .track-time::before {
+      content: '\25CB';
+      color: #DAA520;
+      font-size: 0.7rem;
+    }
+
+    .track-card-body {
+      padding: 1.75rem 2rem;
+    }
+
+    .track-card-body h3 {
+      margin: 0 0 0.7rem;
+      font-size: 1.35rem;
+      color: #111;
+    }
+
+    .track-card-body p {
+      margin: 0 0 1.1rem;
+      color: #444;
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+
+    .track-audience {
+      display: inline-block;
+      margin: 0 0 0.9rem;
+      padding: 0.3rem 0.7rem;
+      background: #f4efe0;
+      color: #6b4c00;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border-radius: 999px;
+    }
+
+    .track-details {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 0.55rem 1rem;
+      margin: 0.25rem 0 0;
+      padding: 1rem 0 0;
+      border-top: 1px solid #eee;
+      font-size: 0.9rem;
+    }
+
+    .track-details dt {
+      color: #B00020;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      padding-top: 0.15rem;
+    }
+
+    .track-details dd {
+      margin: 0;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    /* Agenda download link inside each track card */
+    .track-agenda {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      width: fit-content;
+      margin: 1.25rem 0 0 auto;
+      padding: 0.65rem 1.15rem;
+      background: #666;
+      color: #fff;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .track-agenda:hover {
+      background: #444;
+      transform: translateY(-1px);
+    }
+
+    .track-agenda::after {
+      content: '\2193';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #DAA520;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .day-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .track-card {
+        grid-template-columns: 1fr;
+      }
+
+      .track-card-side {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.25rem 1.5rem;
+      }
+
+      .track-card-side::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .day-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .track-card-side {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-       <img src="Assets/REDCapAfricalogo.png" alt="REDCap Africa Logo" style="width: 150px; height: auto;" />
+      <img src="Assets/REDCapAfricalogo.png" alt="REDCap Africa Logo" style="width: 150px; height: auto;" />
       <button class="menu-toggle" aria-expanded="false" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -27,45 +356,156 @@
   </header>
 
   <main>
-    <section class="section">
+    <section class="program-hero">
       <div class="container">
-        <h2>Symposium Program</h2>
-        <p>The REDCap Africa Symposium program includes the main symposium, advanced training, introductory training, and system administrator sessions.</p>
+        <h1>Program</h1>
+        <p class="lead">Discover sessions, workshops, and networking opportunities.</p>
       </div>
     </section>
 
-    <section class="section section-alt">
-      <div class="container cards-grid">
-        <article class="card">
-          <h3>Advanced Workshop</h3>
-          <p>19-20 October | 09:00 - 17:00</p>
-          <p>Experienced REDCap users will explore branching logic, calculated fields, API integrations and advanced workflows.</p>
-        </article>
-        <article class="card">
-          <h3>Symposium</h3>
-          <p>21-22 October | 08:00 - 17:00</p>
-          <p>Keynote sessions, panel discussions, and abstract presentations that showcase REDCap innovations across African research.</p>
-        </article>
-        <article class="card">
-          <h3>Introductory Workshop</h3>
-          <p>21-23 October | 09:00 - 17:00</p>
-          <p>Beginner-friendly training on REDCap project setup, data entry, and essential tools for new users.</p>
-        </article>
-        <article class="card">
-          <h3>System Administrator Training</h3>
-          <p>23 October | 09:00 - 17:00</p>
-          <p>Practical guidance on server setup, security, maintenance and troubleshooting for REDCap sys-admins.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
+    <section class="glance">
       <div class="container">
-        <h2>Program Notes</h2>
-        <p>The Symposium is the core event. Training workshops are supplementary and require Symposium registration to attend.</p>
+        <h2>At a glance</h2>
+        <div class="day-strip">
+          <div class="day-cell">
+            <span class="date">Mon &middot; 19 Oct</span>
+            <span class="day-name">Day 1</span>
+            <ul>
+              <li>Advanced Workshop</li>
+            </ul>
+          </div>
+          <div class="day-cell">
+            <span class="date">Tue &middot; 20 Oct</span>
+            <span class="day-name">Day 2</span>
+            <ul>
+              <li>Advanced Workshop</li>
+            </ul>
+          </div>
+          <div class="day-cell">
+            <span class="date">Wed &middot; 21 Oct</span>
+            <span class="day-name">Day 3</span>
+            <ul>
+              <li>Symposium opens</li>
+            </ul>
+          </div>
+          <div class="day-cell">
+            <span class="date">Thu &middot; 22 Oct</span>
+            <span class="day-name">Day 4</span>
+            <ul>
+              <li>Symposium</li>
+            </ul>
+          </div>
+          <div class="day-cell">
+            <span class="date">Fri &middot; 23 Oct</span>
+            <span class="day-name">Day 5</span>
+            <ul>
+              <li>Introductory Workshop</li>
+              <li>SysAdmin Training</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
+    <section class="track-filter">
+      <div class="container">
+        <h2 style="margin:0 0 1rem;">Explore the tracks</h2>
+        <p style="margin:0 0 1.5rem; color:#555;">Filter by the track that best matches how you use REDCap.</p>
+        <div class="filter-tabs" role="tablist">
+          <button class="filter-tab active" data-filter="all">All Tracks</button>
+          <button class="filter-tab" data-filter="advanced">Advanced Workshop</button>
+          <button class="filter-tab" data-filter="symposium">Symposium</button>
+          <button class="filter-tab" data-filter="intro">Introductory Workshop</button>
+          <button class="filter-tab" data-filter="sysadmin">System Administrator</button>
+        </div>
+
+        <div class="track-list">
+          <article class="track-card" data-track="advanced">
+            <div class="track-card-side">
+              <div>
+                <span class="track-tag">Track</span>
+                <p class="track-date">Mon 19 &ndash; Tue 20 Oct</p>
+              </div>
+              <span class="track-time">09:00 &ndash; 17:00</span>
+            </div>
+            <div class="track-card-body">
+              <h3>Advanced Workshop</h3>
+              <span class="track-audience">For: Experienced REDCap users</span>
+              <p>Take your REDCap skills to the next level. Explore advanced features and integrations for complex research workflows.</p>
+              <dl class="track-details">
+                <dt>Focus</dt><dd>Advanced features like branching logic, calculated fields and API integrations</dd>
+                <dt>Format</dt><dd>Interactive Hands-on training with live demos</dd>
+                <dt>Outcome</dt><dd>Learn to optimize REDCap for complex research workflows.</dd>
+              </dl>
+              <a class="track-agenda" href="#" download>Download agenda</a>
+            </div>
+          </article>
+
+          <article class="track-card" data-track="symposium">
+            <div class="track-card-side">
+              <div>
+                <span class="track-tag">Main event</span>
+                <p class="track-date">Wed 21 &ndash; Thu 22 Oct</p>
+              </div>
+              <span class="track-time">08:00 &ndash; 17:00</span>
+            </div>
+            <div class="track-card-body">
+              <h3>Symposium</h3>
+              <span class="track-audience">For: Open to all attendees, regardless of REDCap experience</span>
+              <p>Connect, share and shape the future of health data. Join keynote sessions, panels and abstract presentations with experts across Africa.</p>
+              <dl class="track-details">
+                <dt>Focus</dt><dd>Keynote sessions, panel discussions and abstract presentations</dd>
+                <dt>Format</dt><dd>Plenary sessions + Use case discussions</dd>
+                <dt>Outcome</dt><dd>Share best practices, explore innovations and network with peers.</dd>
+              </dl>
+              <a class="track-agenda" href="#" download>Download agenda</a>
+            </div>
+          </article>
+
+          <article class="track-card" data-track="intro">
+            <div class="track-card-side">
+              <div>
+                <span class="track-tag">Track</span>
+                <p class="track-date">Fri 23 Oct</p>
+              </div>
+              <span class="track-time">09:00 &ndash; 17:00</span>
+            </div>
+            <div class="track-card-body">
+              <h3>Introductory Workshop</h3>
+              <span class="track-audience">For: Beginners and new REDCap users</span>
+              <p>Start your REDCap journey with confidence. Learn the basics of project setup and data entry in a hands-on environment.</p>
+              <dl class="track-details">
+                <dt>Focus</dt><dd>Basic setup, project creation and data entry</dd>
+                <dt>Format</dt><dd>Interactive Hands-on training with live demos</dd>
+                <dt>Outcome</dt><dd>Participants will be able to create and manage simple REDCap.</dd>
+              </dl>
+              <a class="track-agenda" href="#" download>Download agenda</a>
+            </div>
+          </article>
+
+          <article class="track-card" data-track="sysadmin">
+            <div class="track-card-side">
+              <div>
+                <span class="track-tag">Track</span>
+                <p class="track-date">Fri 23 Oct</p>
+              </div>
+              <span class="track-time">09:00 &ndash; 17:00</span>
+            </div>
+            <div class="track-card-body">
+              <h3>System Administrator Training</h3>
+              <span class="track-audience">For: REDCap sys-admins and IT teams</span>
+              <p>Master the backbone of REDCap infrastructure. Gain practical skills for server management, security, and troubleshooting.</p>
+              <dl class="track-details">
+                <dt>Focus</dt><dd>Server setup, security, upgrades and troubleshooting.</dd>
+                <dt>Format</dt><dd>Technical deep dive with Q&amp;A</dd>
+                <dt>Outcome</dt><dd>Equip sys-admins with skills to maintain robust REDCap environments.</dd>
+              </dl>
+              <a class="track-agenda" href="#" download>Download agenda</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -88,8 +528,7 @@
         </div>
         <div class="footer-col">
           <h3>Contact</h3>
-          <p>Email: <a href="mailto:support@witsredcap.co.za" target="_blank" class="footer-link-email">support@witsredcap.co.za</a>
-          </p>
+          <p>Email: <a href="mailto:support@witsredcap.co.za" target="_blank" class="footer-link-email">support@witsredcap.co.za</a></p>
           <p>Johannesburg, South Africa</p>
         </div>
       </div>
@@ -100,5 +539,27 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    (function () {
+      var tabs = document.querySelectorAll('.filter-tab');
+      var cards = document.querySelectorAll('.track-card');
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) { t.classList.remove('active'); });
+          tab.classList.add('active');
+
+          var filter = tab.getAttribute('data-filter');
+          cards.forEach(function (card) {
+            if (filter === 'all' || card.getAttribute('data-track') === filter) {
+              card.classList.remove('hidden');
+            } else {
+              card.classList.add('hidden');
+            }
+          });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
