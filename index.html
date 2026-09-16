@@ -24,13 +24,108 @@
         <a href="contact.html">Contact</a>
       </nav>
     </div>
+    <style>
+      .fun-facts {
+	margin-top: 10px;
+	background-image: url(Assets/hero.jpg);
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	padding: 140px 0px;
+	color: #fff;
+  position: relative;
+}
+
+.fun-facts::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.832);
+  pointer-events: none;
+}
+
+.fun-facts > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.fun-facts > .container > .row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: center;
+}
+
+.fun-facts .col-md-6 > .row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 760px) {
+  .fun-facts > .container > .row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fun-facts span {
+	text-transform: uppercase;
+	font-size: 15px;
+	color: #fff;
+	letter-spacing: 1px;
+	margin-bottom: 10px;
+	display: block;
+}
+
+.fun-facts h2 {
+	font-size: 36px;
+	font-weight: 600;
+	margin-bottom: 35px;
+}
+
+.fun-facts em {
+	font-style: normal;
+	color: #c64039;
+}
+
+.fun-facts p {
+	color: #fff;
+	margin-bottom: 40px;
+}
+
+.fun-facts .left-content {
+	margin-right: 45px;
+}
+
+.count-area-content {
+	text-align: center;
+	background-color: rgba(250,250,250,0.1);
+	padding: 25px 30px 35px 30px;
+	margin: 15px 0px;
+}
+
+.count-digit {
+    margin: 5px 0px;
+    color: #a4c639;
+    font-weight: 700;
+    font-size: 36px;
+}
+.count-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+    </style>
   </header>
 
   <main>
     <section class="hero" id="hero">
       <div class="container hero-content">
         <div>
-          <p class="eyebrow">11th Edition • 21–22 October 2026</p>
+          <p class="eyebrow"><span style="padding: 5px; background: #b89000; color: #fff; margin: 4px;">11th Edition</span> • 21–22 October 2026</p>
           <h1>REDCap Africa Symposium 2026: Advancing Health Data Collaboration</h1>
           <p>Join a vibrant community of researchers, data managers, and IT professionals from across Africa and beyond.</p>
           <div class="hero-actions">
@@ -38,82 +133,95 @@
             <a class="button button-outline" href="about.html">Learn More</a>
           </div>
         </div>
-        <div class="hero-card">
+        <div class="count-area-content">
           <div class="hero-card-inner">
-            <p class="hero-card-pretitle">Symposium Highlights</p>
+            <p class="hero-card-pretitle" style="color: #fff; ">Symposium Highlights</p>
             <ul>
-              <li>Keynotes, panels and abstract presentations</li>
-              <li>Advanced, introductory and sys-admin training</li>
-              <li>Practical REDCap case studies and live demos</li>
-              <li>Networking across research and health data teams</li>
+              <li style="color: #fff; list-style: none; text-align: left;">Keynotes, panels and abstract presentations</li>
+              <li style="color: #fff; list-style: none; text-align: left;">Advanced, introductory and sys-admin training</li>
+              <li style="color: #fff; list-style: none; text-align: left;">Practical REDCap case studies and live demos</li>
+              <li style="color: #fff; list-style: none; text-align: left;">Networking across research and health data teams</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-alt">
+    <section class="section">
       <div class="container section-grid">
         <div>
-          <h2>About the Symposium</h2>
+          <h2 style="font-size: 30px;">About the Symposium</h2>
           <p>The REDCap Africa Symposium is a premier continental platform for advancing research data management and collaboration. Now in its 10th edition, the symposium convenes a diverse community of researchers, data professionals, and institutional leaders to exchange knowledge, showcase innovations, and strengthen the use of REDCap across Africa.</p>
           <p>Through technical sessions, peer learning, and networking opportunities, the symposium supports institutions to enhance data quality, improve research efficiency, and drive impactful evidence generation.</p>
         </div>
-        <div class="feature-list">
-          <h3>Why attend</h3>
-          <ul>
-            <li>Learn REDCap best practices from African practitioners</li>
-            <li>Connect with peers from research, healthcare and tech</li>
-            <li>Discover governance, ethics and secure data management</li>
-            <li>Access practical training for beginners and advanced users</li>
-          </ul>
+        <div class="picture-placeholder" role="img" aria-label="Picture placeholder">
+          <span>Picture placeholder</span>
         </div>
       </div>
     </section>
+
+    <div class="fun-facts">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="left-content">
+          
+              <h2>Why <em>attend?</em></h2>
+              <p>Join a vibrant community of researchers, data managers, and IT professionals from across Africa and beyond. The REDCap Africa Symposium 2026 is your opportunity to:
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 align-self-center">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="count-area-content">
+                  <div class="count-digit"></div>
+                  <div class="count-title" style="font-size: 16px;">Share best practices in data collection and management</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="count-area-content">
+                  <div class="count-digit"></div>
+                  <div class="count-title" style="font-size: 16px;">Discuss data governance and ethical considerations.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="count-area-content">
+                  <div class="count-digit"></div>
+                  <div class="count-title" style="font-size: 16px;">Explore the future of REDCap and digital health solutions in Africa.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="count-area-content">
+                  <div class="count-digit"></div>
+                  <div class="count-title" style="font-size: 16px;">Network with peers, innovators, and thought leaders.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <section class="section">
       <div class="container">
-        <h2>Who should attend</h2>
-        <div class="cards-grid">
-          <article class="card">
-            <h3>Researchers & Academics</h3>
-            <p>Improve data quality, workflows and research collaboration across projects.</p>
-          </article>
-          <article class="card">
-            <h3>Data Managers</h3>
-            <p>Learn practical REDCap tools that support reliable data collection and management.</p>
-          </article>
-          <article class="card">
-            <h3>Systems Administrators</h3>
-            <p>Gain hands-on skills for server management, security and REDCap configuration.</p>
-          </article>
-          <article class="card">
-            <h3>Policy Makers & Leaders</h3>
-            <p>Explore how data governance and collaboration drive stronger health research outcomes.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt">
-      <div class="container">
         <h2>Symposium Week Highlights</h2>
         <div class="cards-grid">
-          <article class="card">
-            <h3>Advanced Workshop</h3>
-            <p>19-20 October | Experienced REDCap users explore branching logic, calculated fields and API integrations.</p>
+          <article  style="background-color: #f9f7f7; border-left: 4px solid #bfbebe;">
+            <h3 style="font-size: 15px; padding: 10px;">Advanced Workshop</h3>
+            <p style="font-size: 15px; padding: 10px;"  >19-20 October | Experienced REDCap users explore branching logic, calculated fields and API integrations.</p>
           </article>
-          <article class="card">
-            <h3>Symposium</h3>
-            <p>21-22 October | Keynotes, panels, abstract presentations and real-world REDCap use cases.</p>
+          <article style="background-color: #f9f7f7; border-left: 4px solid #000000;">
+            <h3 style="font-size: 15px; padding: 10px;">Symposium</h3>
+            <p style="font-size: 15px; padding: 10px;">21-22 October | Keynotes, panels, abstract presentations and real-world REDCap use cases.</p>
           </article>
-          <article class="card">
-            <h3>Introductory Workshop</h3>
-            <p>21-23 October | Beginner-friendly training on project setup, data entry and REDCap fundamentals.</p>
+          <article style="background-color: #f9f7f7; border-left: 4px solid #000000;">
+            <h3 style="font-size: 15px; padding: 10px;">Introductory Workshop</h3>
+            <p style="font-size: 15px; padding: 10px;">21-23 October | Beginner-friendly training on project setup, data entry and REDCap fundamentals.</p>
           </article>
-          <article class="card">
-            <h3>Sys-Admin Training</h3>
-            <p>23 October | Practical sessions on server setup, security, upgrades and troubleshooting.</p>
+          <article style="background-color: #f9f7f7; border-left: 4px solid #000000;">
+            <h3 style="font-size: 15px; padding: 10px;">Sys-Admin Training</h3>
+            <p style="font-size: 15px; padding: 10px;">23 October | Practical sessions on server setup, security, upgrades and troubleshooting.</p>
           </article>
         </div>
       </div>
@@ -126,35 +234,55 @@
         <a class="button button-primary" href="registration.html">Register Today</a>
       </div>
     </section-->
+
+    <section class="section collaborators-section">
+      <div class="container collaborators-layout">
+        <div class="collaborators-intro">
+          <h2 style="font-size: 28px;">Our collaborators</h2>
+          <p>Partners and institutions helping advance health data collaboration across Africa.</p>
+        </div>
+        <div class="collaborators-placeholder-grid" aria-label="Collaborator logo placeholders">
+          <div class="collaborator-placeholder">Logo placeholder</div>
+          <div class="collaborator-placeholder">Logo placeholder</div>
+          <div class="collaborator-placeholder">Logo placeholder</div>
+          <div class="collaborator-placeholder">Logo placeholder</div>
+          <div class="collaborator-placeholder">Logo placeholder</div>
+          <div class="collaborator-placeholder">Logo placeholder</div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <h3>REDCap Africa</h3>
-          <p>Connecting the African research community through data.</p>
+          <img src="Assets/REDCapAfricalogo.png" alt="REDCap Africa Logo" style="width: 170px; height: auto; padding-top: 30px;" />
+          <p style="padding-top: 20px; font-size: 12px;">Connecting the African research community through data.</p>
+          <a href="https://www.linkedin.com/company/redcap-africa/" target="_blank" rel="noopener noreferrer">
+            <img src="Assets/icons8-linkedin-48.png" alt="REDCap Africa LinkedIn" style="width: 28px; height: auto" />
+          </a>
         </div>
         <div class="footer-col">
-          <h3>Quick Links</h3>
+          <h3 style="padding-left: 30px;">Quick Links</h3>
           <ul class="footer-links">
             <li><a href="about.html">About Us</a></li>
             <li><a href="venue.html">Venue</a></li>
             <li><a href="program.html">Program</a></li>
-            <li><a href="registration.html">Register</a></li>
+            <li><a href="registration.html">Registration</a></li>
             <li><a href="abstract.html">Abstracts</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h3>Contact</h3>
-          <p>Email: <a href="mailto:support@witsredcap.co.za" target="_blank" class="footer-link-email">support@witsredcap.co.za</a>
+          <p style="font-size: 12px;">Email: <a href="mailto:support@witsredcap.co.za" target="_blank" class="footer-link-email">support@witsredcap.co.za</a>
           </p>
-          <p>Johannesburg, South Africa</p>
+          <p style="font-size: 12px;">Johannesburg, South Africa</p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026-2027 REDCap Africa Symposium. All rights reserved.</p>
+        <p style="font-size: 10px;">&copy; 2026-2027 REDCap Africa Symposium. All rights reserved.</p>
       </div>
     </div>
   </footer>
