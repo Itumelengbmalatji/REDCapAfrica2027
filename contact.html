@@ -6,10 +6,10 @@
   <title>Contact | REDCap Africa Symposium</title>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
+<body class="page-contact">
   <header class="site-header">
     <div class="container header-inner">
-       <img src="Assets/REDCapAfricalogo.png" alt="REDCap Africa Logo" style="width: 150px; height: auto;" />
+      <img src="Assets/REDCapAfricalogo.png" alt="REDCap Africa Logo" style="width: 150px; height: auto;" />
       <button class="menu-toggle" aria-expanded="false" aria-label="Open menu">
         <span></span><span></span><span></span>
       </button>
@@ -27,34 +27,76 @@
   </header>
 
   <main>
-    <section class="section section-alt">
+    <section class="contact-hero">
       <div class="container">
-        <h2>Contact Us</h2>
-        <p>We'd love to hear from you about the REDCap Africa Symposium 2026.</p>
-        <div class="cards-grid">
-          <article class="card">
-            <h3>Email</h3>
-            <p><a href="mailto:support@witsredcap.co.za">support@witsredcap.co.za</a></p>
-          </article>
-          <article class="card">
-            <h3>Location</h3>
-            <p>Johannesburg, South Africa</p>
-          </article>
-          <article class="card">
-            <h3>LinkedIn</h3>
-            <p><a href="https://www.linkedin.com/company/redcap-africa">REDCap Africa on LinkedIn</a></p>
-          </article>
+        <div>
+          <h1>Contact</h1>
+          <p class="lead">Questions about registration, abstracts, travel or partnering with us? Reach the symposium team directly.</p>
+          <ul class="hero-chips">
+            <li><a href="#enquiry-form">Send an enquiry</a></li>
+            <li><a href="mailto:support@witsredcap.co.za">support@witsredcap.co.za</a></li>
+            <li><a href="venue.html">Venue and travel</a></li>
+          </ul>
+        </div>
+        <div class="hero-art" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="contact-reach" id="enquiry-form">
+      <div class="container reach-grid">
+        <div class="contact-form-card">
+          <h2>Send us a message</h2>
+          <p class="form-note">Fill this in and your mail client opens with the message ready to send to the symposium team.</p>
+          <form class="contact-form" id="contact-form">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="name">Full name</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-field">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="organisation">Institution</label>
+                <input type="text" id="organisation" name="organisation" />
+              </div>
+              <div class="form-field">
+                <label for="topic">Topic</label>
+                <select id="topic" name="topic">
+                  <option value="Symposium enquiry">Symposium enquiry</option>
+                  <option value="Registration enquiry">Registration and payment</option>
+                  <option value="Abstract enquiry">Abstract submission</option>
+                  <option value="Workshop enquiry">Workshops and training</option>
+                  <option value="Travel enquiry">Venue, travel and visa</option>
+                  <option value="Sponsorship enquiry">Sponsorship and exhibiting</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="form-submit" type="submit">Open email</button>
+              <p class="form-hint">Prefer to write yourself? Use <a class="arrow-link" href="mailto:support@witsredcap.co.za">support@witsredcap.co.za</a></p>
+            </div>
+          </form>
+        </div>
+
+        <div class="details-panel">
+          <div class="social-card">
+            <h2>Follow the symposium</h2>
+            <ul class="social-links">
+              <li><a href="https://www.linkedin.com/company/redcap-africa" target="_blank" rel="noopener">LinkedIn</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-cta">
-      <div class="container cta-card">
-        <h2>Need more information?</h2>
-        <p>Contact our support team for registration help, abstract questions, or program details.</p>
-        <a class="button button-primary" href="mailto:support@witsredcap.co.za">Email Support</a>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
@@ -89,5 +131,36 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Builds a mailto link from the enquiry form, since the site has no backend
+    (function () {
+      var form = document.getElementById('contact-form');
+      if (!form) return;
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        var fields = form.elements;
+        var name = fields.name.value.trim();
+        var email = fields.email.value.trim();
+        var organisation = fields.organisation.value.trim();
+        var topic = fields.topic.value;
+        var message = fields.message.value.trim();
+
+        var body = [
+          'Name: ' + name,
+          'Email: ' + email,
+          'Institution: ' + (organisation || 'Not provided'),
+          'Topic: ' + topic,
+          '',
+          message
+        ].join('\n');
+
+        window.location.href = 'mailto:support@witsredcap.co.za'
+          + '?subject=' + encodeURIComponent(topic + ' from ' + name)
+          + '&body=' + encodeURIComponent(body);
+      });
+    })();
+  </script>
 </body>
 </html>
