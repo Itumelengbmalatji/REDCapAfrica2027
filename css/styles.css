@@ -61,6 +61,11 @@ button {
   font-size: 1.15rem;
 }
 
+.site-logo {
+  width: 150px;
+  height: auto;
+}
+
 .menu-toggle {
   display: none;
   width: 2rem;
