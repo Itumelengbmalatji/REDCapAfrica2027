@@ -1,18 +1,576 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About REDCap Africa Symposium</title>
   <link rel="stylesheet" href="css/styles.css" />
+
+  <style>
+    /* About hero */
+    .about-hero {
+      position: relative;
+      padding: 2.5rem 0;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(128, 0, 22, 0.85) 0%,
+          rgba(176, 0, 32, 0.8) 100%
+        ),
+        url('https://www.redcap.africa/pics/bread-bg.jpg') center / cover no-repeat;
+      color: #ffffff;
+    }
+
+    .about-hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-hero h1 {
+      margin: 0 0 0.4rem;
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      line-height: 1.2;
+      color: #ffffff;
+    }
+
+    .about-hero .lead {
+      max-width: 85ch;
+      margin: 0.45rem 0 0;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Chair welcome */
+    .chair-welcome-box {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem;
+      background: #ffffff;
+      border: 1px solid #dddddd;
+      border-left: 8px solid #B00020;
+      border-radius: 6px;
+      box-shadow: 8px 8px 12px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+
+    /* Faded REDCap logo */
+    .chair-welcome-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url('Assets/REDCapAfricalogo.png');
+      background-size: 75%;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.13;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Keep content above background */
+    .chair-welcome-box > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Welcome heading */
+    .chair-welcome-heading {
+      position: relative;
+      margin: 0 0 2.5rem;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #111111 !important;
+    }
+
+    /* Heading underline */
+    .chair-welcome-heading::after {
+      content: "";
+      display: block;
+      width: 100px;
+      height: 4px;
+      margin: 0.7rem auto 0;
+      background: #B00020;
+      border-radius: 10px;
+    }
+
+    /* Split layout */
+    .chair-split-layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    /* Chair profile */
+    .chair-profile-side {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* Chair image */
+    .chair-image-container {
+      position: relative;
+      width: 240px;
+      height: 280px;
+      overflow: hidden;
+      border-radius: 10px;
+      border: 3px solid #B00020;
+      background: #f0f0f0;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .chair-message-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    /* Chair organisation logo */
+    .chair-photo-logo {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 65px;
+      padding: 7px 28px;
+      background: #ffffff;
+      border-top: 1px solid #dddddd;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .chair-photo-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Chair name */
+    .chair-profile-side h3 {
+      margin: 1.3rem 0 0.25rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #111111;
+    }
+
+    /* Chair role */
+    .chair-role {
+      margin: 0;
+      max-width: 250px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      font-weight: 600;
+      color: #B00020 !important;
+    }
+
+    /* Chair message */
+    .chair-message-side {
+      position: relative;
+      padding-left: 2.5rem;
+      border-left: 3px solid #B00020;
+    }
+
+    .chair-message-side p {
+      margin: 0 0 1.3rem;
+      font-size: 1rem;
+      line-height: 1.85;
+      text-align: justify;
+      color: #222222 !important;
+    }
+
+    .chair-message-side p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Organizing committee */
+    .section-committee {
+      position: relative;
+      background-image: url('Assets/hero.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      padding: 4rem 0;
+    }
+
+    /* Dark overlay */
+    .section-committee::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(6, 7, 15, 0.7);
+      pointer-events: none;
+    }
+
+    .section-committee .committee-heading-block {
+      position: relative;
+      z-index: 1;
+    }
+
+    .committee-heading-block {
+      text-align: center;
+    }
+
+    /* Committee layout */
+    .committee-pyramid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .committee-tier {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      width: 100%;
+    }
+
+    /* Co-chairs and members */
+    .tier-cochairs .committee-card,
+    .tier-members .committee-card {
+      width: 260px;
+    }
+
+    .tier-cochairs,
+    .tier-members {
+      display: grid;
+      grid-template-columns: repeat(4, 260px);
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    /* Centre co-chairs */
+    .tier-cochairs .committee-card:nth-child(1) {
+      grid-column: 1 / 3;
+      justify-self: center;
+    }
+
+    .tier-cochairs .committee-card:nth-child(2) {
+      grid-column: 3 / 5;
+      justify-self: center;
+    }
+
+    /* Final member row */
+    .committee-pyramid > .tier-members:last-child {
+      width: min(1250px, 100%);
+      grid-template-columns: repeat(4, 260px);
+      justify-content: space-between;
+      gap: 0;
+    }
+
+    /* Committee cards */
+    .committee-card {
+      position: relative;
+      background-image:
+        linear-gradient(
+          rgba(255, 0, 0, 0.50),
+          rgba(255, 0, 0, 0.50)
+        ),
+        url('Assets/JHBv1.png');
+      background-size: cover;
+      background-position: center;
+      border-radius: 7px;
+      border: 2px solid #0c0000 !important;
+      padding: 1rem 0.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .committee-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Committee photos */
+    .committee-profile-pic {
+      width: 180px;
+      height: 180px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f0f0f0;
+      border: 3px solid var(--primary-red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .committee-profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Committee details */
+    .committee-info {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .committee-info h4 {
+      margin: 0.5rem 0 0.25rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff !important;
+    }
+
+    .committee-role {
+      margin: 0 0 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #ffffff !important;
+    }
+
+    /* Committee logos */
+    .committee-logo {
+      position: absolute;
+      z-index: 2;
+      width: 135px;
+      height: 85px;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      padding: 4px;
+      background: #ffffff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .committee-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Committee page styles */
+    .page-about .section h2 {
+      color: #000000 !important;
+    }
+
+    .page-about .section-committee h2 {
+      color: #ffffff !important;
+    }
+
+    .page-about .section-committee .committee-heading-block > p {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Uniform card size */
+    .page-about .committee-card {
+      min-height: 400px;
+      padding-top: 1.9rem;
+    }
+
+    /* White logo banner */
+    .page-about .committee-card::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 85px;
+      background: #ffffff;
+      border-radius: 0 0 7px 7px;
+      z-index: 0;
+    }
+
+    .page-about .committee-info h4 {
+      min-height: 2.8em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    /* Diversity section */
+    .diversity-section {
+      padding: 4rem 0;
+      text-align: center;
+      background: #f5f5f5;
+    }
+
+    .diversity-section h2 {
+      position: relative;
+      display: inline-block;
+      margin: 0 0 2rem;
+      font-size: 2.4rem;
+      color: #111111;
+    }
+
+    .diversity-section h2::after {
+      content: '';
+      position: absolute;
+      width: 120px;
+      height: 4px;
+      left: 50%;
+      bottom: -12px;
+      transform: translateX(-50%);
+      background: #B00020;
+      border-radius: 10px;
+    }
+
+    .diversity-section p {
+      max-width: 850px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #333333;
+    }
+
+    /* Footer */
+    .page-about .footer-col h3 {
+      color: #DAA520 !important;
+    }
+
+    /* Tablet */
+    @media (max-width: 950px) {
+      .chair-split-layout {
+        grid-template-columns: 240px 1fr;
+        gap: 2.5rem;
+      }
+
+      .chair-image-container {
+        width: 210px;
+        height: 250px;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 720px) {
+      .chair-welcome-box {
+        padding: 2rem 1.4rem;
+      }
+
+      .chair-welcome-heading {
+        font-size: 1.7rem;
+        margin-bottom: 2rem;
+      }
+
+      .chair-split-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+      }
+
+      .chair-image-container {
+        width: 200px;
+        height: 240px;
+      }
+
+      .chair-photo-logo {
+        height: 68px;
+        padding: 6px 22px;
+      }
+
+      .chair-profile-side h3 {
+        font-size: 1.3rem;
+      }
+
+      .chair-message-side {
+        padding-left: 0;
+        padding-top: 2rem;
+        border-left: none;
+        border-top: 3px solid #B00020;
+      }
+
+      .chair-message-side::before {
+        top: -5px;
+        left: 5px;
+        font-size: 4rem;
+      }
+
+      .chair-message-side p {
+        font-size: 0.95rem;
+        text-align: left;
+      }
+
+      .chair-welcome-box::before {
+        background-size: 130%;
+      }
+
+      /* Mobile committee */
+      .committee-tier {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .tier-cochairs,
+      .tier-members {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .tier-cochairs .committee-card:nth-child(1),
+      .tier-cochairs .committee-card:nth-child(2) {
+        grid-column: auto;
+      }
+
+      .tier-cochairs .committee-card,
+      .tier-members .committee-card {
+        width: min(320px, 100%);
+      }
+
+      .committee-pyramid > .tier-members:last-child {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .committee-card {
+        text-align: center;
+      }
+    }
+  </style>
 </head>
+
 <body class="page-about">
+
+  <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
-       <img src="Assets/REDCapAfricalogo.png" alt="REDCap Africa Logo" style="width: 150px; height: auto;" />
-      <button class="menu-toggle" aria-expanded="false" aria-label="Open menu">
-        <span></span><span></span><span></span>
+
+      <img
+        src="Assets/REDCapAfricalogo.png"
+        alt="REDCap Africa Logo"
+        style="width: 150px; height: auto;"
+      />
+
+      <button
+        class="menu-toggle"
+        aria-expanded="false"
+        aria-label="Open menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
+
       <nav class="site-nav" id="site-nav">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -23,227 +581,382 @@
         <a href="past-years.html">Past Years</a>
         <a href="contact.html">Contact</a>
       </nav>
+
     </div>
   </header>
 
   <main>
+
+    <!-- About hero -->
+    <section class="about-hero">
+      <div class="container">
+        <h1>About REDCap Africa Symposium</h1>
+
+        <p class="lead">
+          The REDCap Africa Symposium brings together researchers,
+          data managers and technologists to foster collaboration,
+          share expertise, and improve data quality for health research
+          across the continent.
+        </p>
+      </div>
+    </section>
+
+    <!-- Chair welcome -->
     <section class="section section-alt">
       <div class="container">
-        <div class = "about-intro" >
-          <h2>About the Symposium</h2>
-          <p>The REDCap Africa Symposium brings together researchers, data managers and technologists to foster collaboration, share expertise, and improve data quality for health research across the continent.</p>
-          <p>Since its inception, the symposium has focused on hands-on training, peer-to-peer learning and building partnerships that strengthen research data systems in Africa.</p>
-        </div>
-          <div class="feature-list">
-          <h3>Our Mission</h3>
-          <ul>
-            <li><img src="Assets/graduation-cap-icon.png" alt="" class="mission-icon"><span><strong>Capacity Building</strong> - Empowering institutions with skills to manage health data effectively.</span></li>
-            <li><img src="Assets/bulb-icon.png" alt="" class="mission-icon"><span><strong>Innovation</strong> - Showcasing cutting-edge REDCap applications and integrations.</span></li>
-            <li><img src="Assets/partner-handshake2-icon.png" alt="" class="mission-icon"><span><strong>Collaboration</strong> - Creating networks that strengthen research across Africa.</span></li>
-            <li><img src="Assets/bank-building-icon.png" alt="" class="mission-icon"><span><strong>Governance</strong> - Promoting ethical and secure data practices</span></li>
-          </ul>
+
+        <div class="chair-welcome-box">
+
+          <h2 class="chair-welcome-heading">
+            Welcome from the Chair
+          </h2>
+
+          <div class="chair-split-layout">
+
+            <div class="chair-profile-side">
+
+              <div class="chair-image-container">
+                <img
+                  src="Assets/MapuleN.jpg"
+                  alt="Mapule Nhlapo"
+                  class="chair-message-image"
+                >
+
+                <div class="chair-photo-logo">
+                  <img
+                    src="Assets/WITSL.svg"
+                    alt="University of the Witwatersrand Logo"
+                  >
+                </div>
+              </div>
+
+              <h3>Mapule Nhlapo</h3>
+
+              <p class="chair-role">
+                Chair
+              </p>
+
+            </div>
+
+            <div class="chair-message-side">
+
+              <p>
+                It is a pleasure to welcome you to the REDCap Africa
+                Symposium. This gathering brings together researchers,
+                data professionals, developers, and institutions from
+                across the continent to connect, share knowledge, and
+                learn from one another. We hope the symposium creates a
+                valuable space for meaningful conversations and new ideas.
+              </p>
+
+              <p>
+                The symposium is an opportunity to celebrate the growing
+                REDCap community in Africa and the important work being
+                done across research and data management. Through
+                presentations, discussions, and collaboration, we aim to
+                encourage the exchange of practical experiences and
+                innovative approaches that can strengthen research across
+                the region.
+              </p>
+
+              <p>
+                We are delighted to welcome both returning participants
+                and those joining us for the first time. We hope your time
+                at the symposium is informative, engaging, and filled with
+                opportunities to build new connections. Thank you for
+                being part of this community, and we look forward to
+                sharing a memorable experience together.
+              </p>
+
+            </div>
+
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- Organizing committee -->
     <section class="section section-committee">
+
       <div class="committee-heading-block">
+
         <h2>Organizing Committee</h2>
-        <p>The symposium is led by a dedicated committee from universities and research institutions across South Africa and the region.</p>
-        
-       
+
+        <p>
+          The symposium is led by a dedicated committee from universities
+          and research institutions across South Africa and the region.
+        </p>
+
         <div class="committee-pyramid">
 
-          <!-- Tier 2: Co-Chairs -->
+          <!-- Co-chairs -->
           <div class="committee-tier tier-cochairs">
+
             <div class="committee-card">
               <div class="committee-profile-pic">
-                <img src="Assets/Zekhethelo.jpg" style="object-position: 85% 5%;" alt="Katherine Johnston">
+                <img
+                  src="Assets/person-place.png"
+                  style="object-position: 85% 5%;"
+                  alt="Zekhethelo Maseko"
+                >
               </div>
+
               <div class="committee-info">
                 <h4>Zekhethelo Maseko</h4>
                 <p class="committee-role">Co-Chair</p>
-                <div class="committee-org-wrapper">
-                  <p class="committee-org">University of Witswatersrand</p>
-                </div>
-                <div class="committee-logo committee-logo-corner">
-                  <img src="Assets/WitslogoV2.jpg" alt="University of Witswatersrand Logo">
+
+                <div class="committee-logo">
+                  <img
+                    src="Assets/WITSL.svg"
+                    alt="University of the Witwatersrand Logo"
+                  >
                 </div>
               </div>
             </div>
 
             <div class="committee-card">
               <div class="committee-profile-pic">
-                <img src="Assets/ms-Natasha.jpg" style="object-position: 85% 5%;"  alt = "Natasha Titus">
+                <img
+                  src="Assets/person-place.png"
+                  style="object-position: 85% 5%;"
+                  alt="Khuthadzo Hlongwane"
+                >
               </div>
+
               <div class="committee-info">
-                <h4>Khuthadzo .</h4>
+                <h4>Khuthadzo Hlongwane</h4>
                 <p class="committee-role">Co-Chair</p>
-                <div class="committee-org-wrapper">
-                  <p class="committee-org">South African Medical Research Council</p>
-                </div>
-                <div class="committee-logo committee-logo-corner">
-                  <img src="Assets/samrc.png" alt="South African Medical Research Council Logo">
+
+                <div class="committee-logo">
+                  <img
+                    src="Assets/PHRU.png"
+                    alt="Institution Logo"
+                  >
                 </div>
               </div>
             </div>
+
           </div>
 
-          <!-- Tier 3: Key Members (row 1 of 4) -->
+          <!-- Members row 1 -->
           <div class="committee-tier tier-members">
+
             <div class="committee-card">
               <div class="committee-profile-pic">
-                <img src="Assets/Zandi.jpg" alt="Dr Mhlekazi Molatoli">
+                <img
+                  src="Assets/person-place.png"
+                  alt="Zandi Mkhonta"
+                >
               </div>
+
               <div class="committee-info">
                 <h4>Zandi Mkhonta</h4>
                 <p class="committee-role">Key Member</p>
-                <div class="committee-org-wrapper">
-                  <p class="committee-org">University of Witswatersrand</p>
-                </div>
-                <div class="committee-logo committee-logo-corner">
-                  <img src="Assets/WitslogoV2.jpg" alt="University of Witswatersrand">
+
+                <div class="committee-logo">
+                  <img
+                    src="Assets/WITSL.svg"
+                    alt="University of the Witwatersrand Logo"
+                  >
                 </div>
               </div>
             </div>
 
             <div class="committee-card">
               <div class="committee-profile-pic">
-                <img src="Assets/Itumeleng.jpg" style="object-position: 50% 5%;" alt="Jaco Dreyer">
+                <img
+                  src="Assets/person-place.png"
+                  style="object-position: 50% 5%;"
+                  alt="Itumeleng Malatji"
+                >
               </div>
+
               <div class="committee-info">
                 <h4>Itumeleng Malatji</h4>
                 <p class="committee-role">Key Member</p>
-                <div class="committee-org-wrapper">
-                  <p class="committee-org">University of Witswatersrand</p>
-                </div>
-                <div class="committee-logo committee-logo-corner">
-                  <img src="Assets/WitslogoV2.jpg" alt="University of Witswatersrand">
+
+                <div class="committee-logo">
+                  <img
+                    src="Assets/WITSL.svg"
+                    alt="University of the Witwatersrand Logo"
+                  >
                 </div>
               </div>
             </div>
 
             <div class="committee-card">
               <div class="committee-profile-pic">
-                <img src="Assets/Annemie Stewart.jpg" alt="Annemie Stewart">
+                <img
+                  src="Assets/person-place.png"
+                  alt="Gideon Kiprotich"
+                >
               </div>
+
               <div class="committee-info">
-                <h4>Annemie Stewart</h4>
+                <h4>Gideon Kiprotich</h4>
                 <p class="committee-role">Key Member</p>
-                <div class="committee-org-wrapper">
-                  <p class="committee-org">University of Cape Town</p>
-                </div>
-                <div class="committee-logo committee-logo-corner">
-                  <img src="Assets/UCT.png" alt="UCT Logo">
+
+                <div class="committee-logo">
+                  <img
+                    src="Assets/APHRC-V2.png"
+                    alt="Institution Logo"
+                  >
                 </div>
               </div>
             </div>
 
             <div class="committee-card">
               <div class="committee-profile-pic">
-                <img src="Assets/Brendan1.jpg" alt="Brendan Gilbert">
+                <img
+                  src="Assets/person-place.png"
+                  alt="Floris Swanepoel"
+                >
               </div>
+
               <div class="committee-info">
-                <h4>Brendan Gilbert</h4>
+                <h4>Floris Swanepoel</h4>
                 <p class="committee-role">Key Member</p>
-                <div class="committee-org-wrapper">
-                  <p class="committee-org">Africa Health Research Institute</p>
-                </div>
-                <div class="committee-logo committee-logo-corner">
-                  <img src="Assets/AHRI.png" alt="Africa Health Research Institute Logo">
+
+                <div class="committee-logo">
+                  <img
+                    src="Assets/PHRU.png"
+                    alt="Institution Logo"
+                  >
                 </div>
               </div>
             </div>
+
           </div>
 
-          <!-- Tier 4: Key Members (row 2 of 4) -->
+          <!-- Members row 2 -->
           <div class="committee-tier tier-members">
+
             <div class="committee-card">
               <div class="committee-profile-pic">
-                <img src="Assets/Marta Vicente.jpg" style="object-position: 85% 10%;" alt="Marta Vicente-Cresto">
+                <img
+                  src="Assets/person-place.png"
+                  style="object-position: 85% 10%;"
+                  alt="Halalisile Cebekhulu"
+                >
               </div>
+
               <div class="committee-info">
-                <h4>Marta Vicente-Cresto</h4>
+                <h4>Halalisile Cebekhulu</h4>
                 <p class="committee-role">Key Member</p>
-                <div class="committee-org-wrapper">
-                  <p class="committee-org">African Population and Health Research Center</p>
-                </div>
-                <div class="committee-logo committee-logo-corner">
-                  <img src="Assets/APHRC-V3.png" alt="African Population and Health Research Center Logo">
+
+                <div class="committee-logo">
+                  <img
+                    src="Assets/PHRU.png"
+                    alt="Institution Logo"
+                  >
                 </div>
               </div>
             </div>
 
             <div class="committee-card">
               <div class="committee-profile-pic">
-                <img src="Assets/clive.jpg" style="object-position: 85% 5%;" alt="Louis Sibiya">
+                <img
+                  src="Assets/person-place.png"
+                  style="object-position: 85% 5%;"
+                  alt="Amanda Jankowitz"
+                >
               </div>
+
               <div class="committee-info">
-                <h4>Louis Sibiya</h4>
+                <h4>Amanda Jankowitz</h4>
                 <p class="committee-role">Key Member</p>
-                <div class="committee-org-wrapper">
-                  <p class="committee-org">South African Medical Research Council</p>
-                </div>
-                <div class="committee-logo committee-logo-corner">
-                  <img src="Assets/samrc.png" alt="South African Medical Research Council Logo">
+
+                <div class="committee-logo">
+                  <img
+                    src="Assets/WITSL.svg"
+                    alt="University of the Witwatersrand Logo"
+                  >
                 </div>
               </div>
             </div>
 
             <div class="committee-card">
               <div class="committee-profile-pic">
-                <img src="Assets/Jaco.jpg" alt="Committee Member 8">
+                <img
+                  src="Assets/person-place.png"
+                  alt="Naomi Njenga"
+                >
               </div>
+
               <div class="committee-info">
-                <h4>Floris</h4>
+                <h4>Naomi Njenga</h4>
                 <p class="committee-role">Key Member</p>
-                <div class="committee-org-wrapper">
-                  <p class="committee-org">Institution Name</p>
-                </div>
-                <div class="committee-logo committee-logo-corner">
-                  <img src="Assets/placeholder-logo.png" alt="Institution Logo">
+
+                <div class="committee-logo">
+                  <img
+                    src="Assets/APHRC-V2.png"
+                    alt="Institution Logo"
+                  >
                 </div>
               </div>
             </div>
 
             <div class="committee-card">
               <div class="committee-profile-pic">
-                <img src="Assets/Mhlekazi Molatoli.jpg" alt="Committee Member 9">
+                <img
+                  src="Assets/person-place.png"
+                  alt="Matsie Phoko"
+                >
               </div>
+
               <div class="committee-info">
-                <h4>Amanda</h4>
+                <h4>Matsie Phoko</h4>
                 <p class="committee-role">Key Member</p>
-                <div class="committee-org-wrapper">
-                  <p class="committee-org">Institution Name</p>
-                </div>
-                <div class="committee-logo committee-logo-corner">
-                  <img src="Assets/placeholder-logo.png" alt="Institution Logo">
+
+                <div class="committee-logo">
+                  <img
+                    src="Assets/PHRU.png"
+                    alt="Institution Logo"
+                  >
                 </div>
               </div>
             </div>
+
           </div>
 
         </div>
       </div>
     </section>
 
-    <section class="section section-alt">
+    <!-- Diversity and inclusion -->
+    <section class="section section-alt diversity-section">
       <div class="container">
-        <h2>Diversity & Inclusion</h2>
-        <p>We are committed to a welcoming and harassment-free experience for all participants, regardless of gender, identity, age, ability, race, ethnicity, religion or technology background.</p>
+
+        <h2>Diversity &amp; Inclusion</h2>
+
+        <p>
+          We are committed to a welcoming and harassment-free experience
+          for all participants, regardless of gender, identity, age,
+          ability, race, ethnicity, religion or technology background.
+        </p>
+
       </div>
     </section>
+
   </main>
 
-<footer class="site-footer">
+  <!-- Footer -->
+  <footer class="site-footer">
     <div class="container">
+
       <div class="footer-grid">
+
         <div class="footer-col">
           <h3>REDCap Africa</h3>
-          <p>Connecting the African research community through data.</p>
+
+          <p>
+            Connecting the African research community through data.
+          </p>
         </div>
+
         <div class="footer-col">
           <h3>Quick Links</h3>
+
           <ul class="footer-links">
             <li><a href="about.html">About Us</a></li>
             <li><a href="venue.html">Venue</a></li>
@@ -253,19 +966,36 @@
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
+
         <div class="footer-col">
           <h3>Contact</h3>
-          <p>Email: <a href="mailto:support@witsredcap.co.za" target="_blank" class="footer-link-email">support@witsredcap.co.za</a>
+
+          <p>
+            Email:
+            <a
+              href="mailto:support@witsredcap.co.za"
+              target="_blank"
+              class="footer-link-email"
+            >
+              support@witsredcap.co.za
+            </a>
           </p>
+
           <p>Johannesburg, South Africa</p>
         </div>
+
       </div>
+
       <div class="footer-bottom">
-        <p>&copy; 2026-2027 REDCap Africa Symposium. All rights reserved.</p>
+        <p>
+          &copy; 2026-2027 REDCap Africa Symposium. All rights reserved.
+        </p>
       </div>
+
     </div>
   </footer>
 
   <script src="script.js"></script>
+
 </body>
 </html>
